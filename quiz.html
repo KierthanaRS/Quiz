@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-India</title>
+    <link rel = "icon" href ="icon.jpg" type = "image/x-icon">
+    <link rel="stylesheet" href="quiz.css" />
+</head>
+
+<body>
+    <section class="main">
+        <div class="container">
+            <div class="col">
+                <h3 id="questionBox">
+                    1) Lorem ipsum dolor sit amet, consectetur adipisicing elit Debitis?
+                </h3>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="first" value="a" required>
+                <label for="first">Testing 1</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="second" value="b" required>
+                <label for="second">Testing 2</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="third" value="c" required>
+                <label for="third">Testing 3</label>
+            </div>
+            <div class="col box">
+                <input name="option" type="radio" id="fourth" value="d" required>
+                <label for="fourth">Testing 4</label>
+            </div>
+            <button id="submit">Submit</button>
+        </div>
+    </section>
+   <script src="geo.js"></script> 
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const quizName = urlParams.get('quiz');
+if (quizName) {
+  document.body.style.backgroundImage = `url(${quizName}.jpg)`;
+  
+}
+const quizData=window[quizName]();
+console.log(quizData)
+let index = 0;
+let correct = 0;
+let incorrect = 0;
+let total = quizData.length;
+let questionBox = document.getElementById("questionBox");
+let allInputs = document.querySelectorAll("input[type='radio']");
+
+const loadQuestion = () => {
+  if (total === index) {
+    return quizEnd();
+  }
+  reset();
+  const data = quizData[index];
+  questionBox.innerHTML = `${index + 1}) ${data.question}`;
+  allInputs[0].nextElementSibling.innerText = data.a;
+  allInputs[1].nextElementSibling.innerText = data.b;
+  allInputs[2].nextElementSibling.innerText = data.c;
+  allInputs[3].nextElementSibling.innerText = data.d;
+};
+
+document.querySelector("#submit").addEventListener(
+  "click",
+  function () {
+    var checked_gender = document.querySelector(
+      'input[name = "option"]:checked',
+    );
+    if (checked_gender != null) {
+      const data = quizData[index];
+      const ans = getAnswer();
+      if (ans === data.correct) {
+        correct++;
+      } else {
+        incorrect++;
+      }
+      index++;
+      loadQuestion();
+    } else {
+      alert("Please Select One Option.");
+    }
+  },
+);
+
+const getAnswer = () => {
+  let ans;
+  allInputs.forEach((inputEl) => {
+    if (inputEl.checked) {
+      ans = inputEl.value;
+    }
+  });
+  return ans;
+};
+
+const reset = () => {
+  allInputs.forEach((inputEl) => {
+    inputEl.checked = false;
+  });
+};
+
+const quizEnd = () => {
+  if (correct >= 0 && correct <= 1) {
+    document.getElementsByClassName("container")[0].innerHTML = `
+       <div class="col">
+            <h3 class="w-100" style="text-align:center;"> 
+            YOU HAVE SCORED ${correct} OUT OF ${total}</h3>
+            <div class="im" style="text-align:center;">
+              <video width="400" height="300" autoplay loop>
+              <source src="poor.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            </div>
+            <h4 class="w-100" style="text-align:center;"> 
+            <a href="wonderwhiz.html" style="text-decoration:none;">RETURN TO HOMEPAGE</a></h4>
+           
+       </div>
+   `;
+  } else if (correct == 2) {
+    document.getElementsByClassName("container")[0].innerHTML = `
+        <div class="col">
+        <h3 class="w-100" style="text-align:center;"> 
+            YOU HAVE SCORED ${correct} OUT OF ${total}</h3>
+            <div class="im" style="text-align:center;">
+              <video id="myVideo"width="400" height="300" autoplay loop>
+              <source src="score2.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            </div>
+            <h4 class="w-100" style="text-align:center;"> 
+            <a href="wonderwhiz.html" style="text-decoration:none;">RETURN TO HOMEPAGE</a></h4>
+           
+        </div>
+    `;
+  } else if (correct == 3) {
+    document.getElementsByClassName("container")[0].innerHTML = `
+        <div class="col">
+        <h3 class="w-100" style="text-align:center;"> 
+            YOU HAVE SCORED ${correct} OUT OF ${total}</h3>
+            <div class="im" style="text-align:center;">
+              <video width="400" height="300" autoplay loop>
+              <source src="okay.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            </div>
+            <h4 class="w-100" style="text-align:center;"> 
+            <a href="wonderwhiz.html" style="text-decoration:none;">RETURN TO HOMEPAGE</a></h4>
+           
+        </div>
+    `;
+  } else if (correct == 4) {
+    document.getElementsByClassName("container")[0].innerHTML = `
+        <div class="col">
+        <h3 class="w-100" style="text-align:center;"> 
+            YOU HAVE SCORED ${correct} OUT OF ${total}</h3>
+            <div class="im" style="text-align:center;">
+              <video width="400" height="300" autoplay loop>
+              <source src="score4.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            </div>
+            <h4 class="w-100" style="text-align:center;"> 
+            <a href="wonderwhiz.html" style="text-decoration:none;">RETURN TO HOMEPAGE</a></h4>
+           
+        </div>
+    `;
+  } else {
+    document.getElementsByClassName("container")[0].innerHTML = `
+        <div class="col">
+        <h3 class="w-100" style="text-align:center;"> 
+            YOU HAVE SCORED ${correct} OUT OF ${total}</h3>
+            <br>
+            <div class="im" style="text-align:center;">
+              <video width="400" height="300" autoplay loop>
+              <source src="pro.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            </div>
+            <br>
+            <h4 class="w-100" style="text-align:center;"> 
+            <a href="wonderwhiz.html" style="text-decoration:none;">RETURN TO HOMEPAGE</a></h4>
+           
+        </div>
+    `;
+  }
+};
+
+loadQuestion(index);
+</script>
+
+</body> 
+</html>
