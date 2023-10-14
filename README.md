@@ -20,7 +20,7 @@ To use the Quiz Website, simply open the index.html file in your web browser. Ch
 How to Contribute
 Fork the repository
 Clone the repository to your local machine
-git clone https://github.com/your-username/quiz-website.git
+git clone https://github.com/KierthanaRS/Quiz.git
 
 Create a new branch for your features
 git checkout -b feature-yourfeature
