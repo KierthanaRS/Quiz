@@ -17,18 +17,10 @@ GitHub Pages: Hosting the project online for easy access.
 Usage
 To use the Quiz Website, simply open the index.html file in your web browser. Choose a quiz category, answer the questions, and submit to see your results instantly.
 
-How to Contribute
-Fork the repository
+
 Clone the repository to your local machine
+
 git clone https://github.com/KierthanaRS/Quiz.git
 
-Create a new branch for your features
-git checkout -b feature-yourfeature
 
-Commit your changes
-git commit -m 'Add your feature'
 
-Push to the branch
-git push origin feature-yourfeature
-
-Create a pull request in the original repository
